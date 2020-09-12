@@ -18,4 +18,4 @@ It also utilizes Nodejs axios library to make Api call to GitHub for user data.
 
 Here's what the CLi looks like (gif of readme Generator).
 
-![](Users/Harmsy/Desktop/BootcampHomework/ReadMeGenerator/GIF.gif)
+![](Users/Harmsy/Desktop/BootcampHomework/ReadMeGenerator/ReadMe.gif)
