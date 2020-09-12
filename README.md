@@ -17,4 +17,5 @@ It utilizes the 'FS' or File System module from, npm to write a new file (readme
 It also utilizes Nodejs axios library to make Api call to GitHub for user data.
 
 Here's what the CLi looks like (gif of readme Generator).
-![](Users/Harmsy/Desktop/BootcampHomework/ReadMeGenerator/Gif.gif)
+
+![](Users/Harmsy/Desktop/BootcampHomework/ReadMeGenerator/GIF.gif)
