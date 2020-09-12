@@ -4,6 +4,7 @@ AS A developer
 I WANT a README generator
 SO THAT can quickly create a professional README for a new project
 
+
 Create a command-line application that dynamically generates a README.md from a user's input. The application will be invoked with the following command:
 node index.js
 
@@ -16,3 +17,4 @@ It utilizes the 'FS' or File System module from, npm to write a new file (readme
 It also utilizes Nodejs axios library to make Api call to GitHub for user data.
 
 Here's what the CLi looks like (gif of readme Generator).
+![](GIF.gif)
