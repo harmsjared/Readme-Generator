@@ -84,40 +84,64 @@ async function main() {
            
 // Api call to retrieving the user data from github.
 
-        const Response = {
-            getUsername (username) { 
-                return axios
-                  .get(`https://api.github.com/users/${Username}`)
-                  .catch(err => {
-                    console.log(`User not found`);
-                    process.exit(1);
-                  });
-            }
-        } 
+        //const Response = {
+            //getUsername (_username) { 
+                //return axios
+                  //.get(`https://api.github.com/users/${Username}`)
+                  //.catch(_err => {
+                    //console.log(`User not found`);
+                    //process.exit(1);
+                 // });
+            //}
+        //} 
 
+        //const Response = (function() {
+            //axios.get(`https://api.github.com/users/${userResponse.name}`).then(function(res){
+                //console.log(res.data, "here with res");
+                //this.response = res.data;
+                //return this.response;
+            //})
+       // })(); 
+       async function getUsername() {
+           try{
+               const response = await axios.get(`https://api.github.com/users/${userResponse.name}`)
+               return response
+           } catch(error){
+               console.error(error)
+           }
+
+       }
+       const Response = getUsername()
+
+        console.log(Response, "here with Response");
+
+    
+
+        //const Response = getUsername(userResponse.name)
+        //console.log(Response)
 // Storing response data from api call to github.
 
-        const Data = Response.data;
-        const Name = Response.username;
+        //const Data = Response.data;
+        const Name = Response.name;
         const Url = Response.html_url;
         const ProfileImage = Response.avatar_url;
-        const Names_Array = Contributors.split(",");
+        //const Names_Array = Contributors.split(",");
         
-        console.log(Names_Array);
+        //console.log(Names_Array);
 
   
 // Api call retrieving github data about any project contributors(if any provided).
 
-        var resultContributor;
+        // var resultContributor;
 
-        for ( i = 0; i < Names_Array.length; i++ ) {
-            var git_username = Names_Array[i];
-            const Response2 = await axios.get(`https://api.github.com/users/${git_username}`);
-            var profileImage2 = Response2.data.avatar_url;
-            var Url_2 = Response2.data.html_url;
-                resultContributor += (`
-            \n <img src="${profileImage2}" alt="drawing" width="150" display="inline"/> ${git_username}  GitHubLink: ${Url_2}`);
-        }
+        // for ( i = 0; i < Names_Array.length; i++ ) {
+        //     var git_username = Names_Array[i];
+        //     const Response2 = await axios.get(`https://api.github.com/users/${git_username}`);
+        //     var profileImage2 = Response2.data.avatar_url;
+        //     var Url_2 = Response2.data.html_url;
+        //         resultContributor += (`
+        //     \n <img src="${profileImage2}" alt="drawing" width="150" display="inline"/> ${git_username}  GitHubLink: ${Url_2}`);
+        // }
 
 
 // Popullating READme file with user data provided.
@@ -136,8 +160,8 @@ async function main() {
     ## License 
     This project is licensed under the ${License_name}.
     ## Contributors
-    ${git_username}
-    ${resultContributor}
+    ${userResponse.username}
+    
     
     ## Tests
     ${Tests}
@@ -150,7 +174,7 @@ async function main() {
                 `);
 
 
-var writeResult = fs.writeFileSync(path.join(__dirname, '../README-Generator', 'readMe.md'), result);
+var writeResult = fs.writeFileSync(path.join(__dirname, '../ReadMeGenerator', 'README.md'), result);
 console.log("READme file generated...");
 }
 
